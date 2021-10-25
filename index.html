@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div id="app" class="app" style="color:blue;background:red">
+    <div>{{arr}}</div>
+    <ul>
+      <li key="name">{{name}}</li>
+      <li key="age">{{age}}</li>
+      <li key="fullName">{{fullName}}</li>
+    </ul>
+  </div> -->
+  <div id="app" class="app" style="color:blue;background:red">
+    <p>{{fullName}}</p>
+  </div>
+  <script src="./dist/vue.js"></script>
+  <!-- <script src="./vue.js"></script> -->
+  <script>
+    // Vue.mixin({
+    //   beforeCreate () {
+    //     console.log('beforeCreate1')
+    //   }
+    // })
+    // Vue.mixin({
+    //   beforeCreate () {
+    //     console.log('beforeCreate2')
+    //   }
+    // })
+
+    // Vue.component('my-button', {
+    //   template: '<button>hello {{message}}</button>',
+    //   data: {
+    //     message: 'my-component'
+    //   },
+    //   beforeCreate () {
+    //     console.log('beforeCreate child')
+    //   },
+    //   created () {
+    //     console.log('create child')
+    //     // setTimeout(() => {
+    //     //   this.message = 'my-component!!!'
+    //     // }, 2000)
+    //   },
+    //   beforeMount () {
+    //     console.log('beforeMount child')
+    //   },
+    //   mounted () {
+    //     console.log('mounted child')
+    //   }
+    // })
+    // Vue.component('my-button2', {
+    //   template: '<button>world</button>'
+    // })
+    
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'zf',
+        // age: {n:12},
+        // arr: [1,2,3],
+        firstName: 'z',
+        lastName: 'f'
+      },
+      components: {
+        'my-button': {
+          template: '<button>world</button>'
+        }
+      },
+      computed: {
+        fullName () {
+          return this.firstName + this.lastName
+        },
+        // fullName: {
+        //   get () {
+        //     console.log('xxxxx')
+        //     return this.firstName + this.lastName
+        //   },
+        //   set (newVal) {
+        //     console.log(newVal)
+        //   }
+        // }
+      },
+      // watch: {
+      //   name (newVal, oldVal) {
+      //     console.log(newVal, oldVal)
+      //   },
+      //   'age.n': [
+      //     function (newVal, oldVal) {
+      //       console.log(newVal, oldVal)
+      //     },
+      //     function (a, b) {
+      //       console.log(a, b)
+      //     }
+      //   ]
+      // },
+      beforeCreate () {
+        console.log('beforeCreate3')
+      },
+      created () {
+        // console.log('created', this.name)
+      },
+      beforeMount () {
+        console.log('beforeMount')
+      },
+      mounted () {
+        console.log('mounted')
+      }
+    })
+
+    console.log(vm)
+
+    setTimeout(() => {
+      // vm.name = 'zfpx'
+      // vm.name = 'zhufengpeixun'
+      // vm.age.n = 13
+      // vm.arr[4] = 5
+      // vm.arr.push(4)
+      // vm.arr[0].push(4, {name:'zf'})
+      // vm._update(vm._render())
+
+      // 微任务是在UI渲染前执行的，我们通过 vm.$el 可以获取到最新的 DOM 是因为我们取的是内存中的，页面是否渲染完于此无关
+      // vm.$nextTick(() => {
+      //   console.log(vm.$el)
+      // })
+
+      vm.firstName = 'zzzzzz'
+      // vm.lastName
+      // vm.lastName = 'ffffff'
+      // vm.fullName
+      // vm.fullName
+    }, 2000)
+
+    // vm.$watch('name', function (a, b) {
+    //   console.log(a, b)
+    // })
+  </script>
+</body>
+</html>
